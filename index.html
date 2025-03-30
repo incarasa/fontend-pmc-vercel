@@ -2,16 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Consulta de Tasa</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistente Financiero</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>Consulta de Tasa</h1>
-  <textarea id="mensaje" rows="5" cols="50" placeholder="Ingresa el mensaje del banco"></textarea>
-  <br>
-  <button id="enviarBtn">Enviar</button>
-  <h2>Respuesta:</h2>
-  <pre id="respuesta"></pre>
+  <div style="max-width: 600px; margin: 2rem auto; padding: 1rem;">
+    <h2>Asistente Financiero</h2>
+
+    <label for="mensaje">Ingresa el texto financiero:</label><br>
+    <textarea id="mensaje" rows="5" style="width: 100%;"></textarea><br>
+    <button id="enviarBtn">Enviar</button>
+
+    <h3>Respuesta GPT:</h3>
+    <pre id="respuesta">Esperando entrada...</pre>
+
+    <h3 id="respuestaTasa"></h3>
+    <h3 id="respuestaInteres"></h3>
+
+    <canvas id="graficoTasa"></canvas>
+  </div>
 
   <script src="index.js"></script>
 </body>

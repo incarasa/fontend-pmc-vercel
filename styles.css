@@ -1,5 +1,41 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  textarea {
+    font-family: monospace;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    background-color: #36A2EB;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #2a8ac9;
+  }
+  
+  pre {
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    overflow-x: auto;
+  }
+  
+  canvas {
+    width: 300px !important;
+    height: 300px !important;
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

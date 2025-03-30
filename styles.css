@@ -1,41 +1,78 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  textarea {
-    font-family: monospace;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-  }
-  
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #36A2EB;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #2a8ac9;
-  }
-  
-  pre {
-    background-color: #fff;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    overflow-x: auto;
-  }
-  
-  canvas {
-    width: 300px !important;
-    height: 300px !important;
-    margin-top: 1rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfcf9;
+  margin: 0;
+  padding: 2rem;
+  background-image: linear-gradient(0deg, transparent 24%, #eee 25%, #eee 26%, transparent 27%, transparent 74%, #eee 75%, #eee 76%, transparent 77%, transparent),
+                    linear-gradient(90deg, transparent 24%, #eee 25%, #eee 26%, transparent 27%, transparent 74%, #eee 75%, #eee 76%, transparent 77%, transparent);
+  background-size: 40px 40px;
+}
+
+h1 {
+  text-align: center;
+  color: #4b2aad;
+  margin-bottom: 0;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #666;
+  margin-top: 0;
+}
+
+.contenedor {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  resize: vertical;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #6b4eff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #563ed1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.resultados {
+  margin-top: 1rem;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}

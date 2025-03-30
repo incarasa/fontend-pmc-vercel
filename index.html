@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asistente Financiero</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qredi</title>
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div style="max-width: 600px; margin: 2rem auto; padding: 1rem;">
-    <h2>Asistente Financiero</h2>
+  <h1>Qredi</h1>
+  <p class="subtitulo">Calcula tasas de interés, analiza inversiones y obtén respuestas a tus consultas financieras con nuestro asistente impulsado por IA.</p>
 
-    <label for="mensaje">Ingresa el texto financiero:</label><br>
-    <textarea id="mensaje" rows="5" style="width: 100%;"></textarea><br>
-    <button id="enviarBtn">Enviar</button>
+  <div class="contenedor">
+    <h2>Qredi - Asistente Financiero</h2>
+    <label for="mensaje">Ingresa tu consulta financiera:</label>
+    <textarea id="mensaje" placeholder="Ej: ¿Cuál es la tasa efectiva anual de un 12% mensual con un monto de 10,000 por 1 año?"></textarea>
 
-    <h3>Respuesta GPT:</h3>
-    
+    <div class="botones">
+      <button id="reiniciarBtn">🔄 Reiniciar</button>
+      <button id="enviarBtn">Enviar →</button>
+    </div>
+
+    <h3>Resultados Qredi</h3>
     <pre id="respuesta">Esperando entrada...</pre>
-
-    <h3 id="respuestaTasa"></h3>
-    <h3 id="respuestaInteres"></h3>
-
-    <canvas id="graficoTasa"></canvas>
+    <div class="resultados">
+      <p id="respuestaTasa"></p>
+      <p id="respuestaInteres"></p>
+      <canvas id="graficoTasa"></canvas>
+    </div>
   </div>
+
+  <footer>
+    Qredi © 2025 - Tu asistente financiero inteligente
+  </footer>
 
   <script src="index.js"></script>
 </body>

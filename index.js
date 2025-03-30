@@ -63,6 +63,7 @@ function generarGrafico(monto, interes) {
 }
 
 let historialConversacion = "";
+
 document.getElementById("enviarBtn").addEventListener("click", async () => {
   const nuevaEntrada = document.getElementById("mensaje").value;
   if (!nuevaEntrada.trim()) return;
@@ -100,4 +101,13 @@ document.getElementById("enviarBtn").addEventListener("click", async () => {
     console.error("Error:", error);
     document.getElementById("respuesta").textContent = "Error al procesar la solicitud.";
   }
+});
+
+document.getElementById("reiniciarBtn").addEventListener("click", () => {
+  historialConversacion = "";
+  document.getElementById("mensaje").value = "";
+  document.getElementById("respuesta").textContent = "Esperando entrada...";
+  document.getElementById("respuestaTasa").textContent = "";
+  document.getElementById("respuestaInteres").textContent = "";
+  if (grafico instanceof Chart) grafico.destroy();
 });

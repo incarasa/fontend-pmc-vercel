@@ -1,3 +1,8 @@
+/* 
+  ==============================
+  = Variables y funciones      =
+  ==============================
+*/
 const periodosPorAño = {
   diaria: 365,
   semanal: 52,
@@ -50,7 +55,7 @@ function generarGrafico(monto, interes) {
         label: 'Distribución del Total',
         data: [monto, interes],
         backgroundColor: ['#36A2EB', '#FF6384'],
-        hoverOffset: 4
+        hoverOffset: 20
       }]
     },
     options: {
@@ -62,12 +67,31 @@ function generarGrafico(monto, interes) {
   });
 }
 
+/* 
+  ==============================
+  = Manejo de la Interfaz      =
+  ==============================
+*/
 let historialConversacion = "";
 
-document.getElementById("enviarBtn").addEventListener("click", async () => {
-  const nuevaEntrada = document.getElementById("mensaje").value;
+// Elementos del DOM
+const enviarBtn = document.getElementById("enviarBtn");
+const reiniciarBtn = document.getElementById("reiniciarBtn");
+const mensajeEl = document.getElementById("mensaje");
+const respuestaEl = document.getElementById("respuesta");
+const respuestaTasaEl = document.getElementById("respuestaTasa");
+const respuestaInteresEl = document.getElementById("respuestaInteres");
+const spinnerEl = document.getElementById("spinner");
+
+/* Evento para Enviar */
+enviarBtn.addEventListener("click", async () => {
+  const nuevaEntrada = mensajeEl.value;
   if (!nuevaEntrada.trim()) return;
 
+  // Mostrar el spinner
+  spinnerEl.style.display = "inline-block";
+
+  // Construimos el historial
   historialConversacion += (historialConversacion ? " " : "") + nuevaEntrada;
 
   try {
@@ -80,34 +104,42 @@ document.getElementById("enviarBtn").addEventListener("click", async () => {
     const data = await res.json();
 
     if (data.faltantes) {
-      document.getElementById("respuesta").textContent = data.pregunta;
+      respuestaEl.textContent = data.pregunta;
     } else {
-      document.getElementById("respuesta").textContent = JSON.stringify(data, null, 2);
+      respuestaEl.textContent = JSON.stringify(data, null, 2);
+
       try {
         const tea = convertirTasa(data);
-        document.getElementById("respuestaTasa").textContent = `TEA: ${tea.toFixed(2)}%`;
+        respuestaTasaEl.textContent = `${tea.toFixed(2)}%`;
         const interes = calcularInteresesCompuestos(data, tea);
-        document.getElementById("respuestaInteres").textContent = `Interés Total: ${interes.toFixed(2)}`;
+        respuestaInteresEl.textContent = `${interes.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} COP`;
         generarGrafico(data.monto, interes);
-        historialConversacion = "";
+
+        // Si deseas reiniciar la conversación en cada petición exitosa:
+        // historialConversacion = "";
       } catch (error) {
-        document.getElementById("respuestaTasa").textContent = `Error en conversión: ${error.message}`;
-        document.getElementById("respuestaInteres").textContent = "";
+        respuestaTasaEl.textContent = `Error en conversión: ${error.message}`;
+        respuestaInteresEl.textContent = "";
       }
     }
 
-    document.getElementById("mensaje").value = "";
+    // Limpiamos el textarea
+    mensajeEl.value = "";
   } catch (error) {
     console.error("Error:", error);
-    document.getElementById("respuesta").textContent = "Error al procesar la solicitud.";
+    respuestaEl.textContent = "Error al procesar la solicitud.";
+  } finally {
+    // Ocultar el spinner
+    spinnerEl.style.display = "none";
   }
 });
 
-document.getElementById("reiniciarBtn").addEventListener("click", () => {
+/* Evento para Reiniciar */
+reiniciarBtn.addEventListener("click", () => {
   historialConversacion = "";
-  document.getElementById("mensaje").value = "";
-  document.getElementById("respuesta").textContent = "Esperando entrada...";
-  document.getElementById("respuestaTasa").textContent = "";
-  document.getElementById("respuestaInteres").textContent = "";
+  mensajeEl.value = "";
+  respuestaEl.textContent = "Esperando entrada...";
+  respuestaTasaEl.textContent = "";
+  respuestaInteresEl.textContent = "";
   if (grafico instanceof Chart) grafico.destroy();
 });

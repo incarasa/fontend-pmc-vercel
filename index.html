@@ -3,29 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Qredi</title>
+  <title>Qredi - Asistente Financiero</title>
+
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>Qredi</h1>
-  <p class="subtitulo">Calcula tasas de interés, analiza inversiones y obtén respuestas a tus consultas financieras con nuestro asistente impulsado por IA.</p>
+  <header>
+    <h1 class="titulo-principal">Qredi</h1>
+    <p class="subtitulo">
+      💡 Calcula tasas de interés, analiza inversiones y obtén respuestas <br />
+      a tus consultas financieras con nuestro asistente impulsado por IA.
+    </p>
+  </header>
 
   <div class="contenedor">
     <h2>Qredi - Asistente Financiero</h2>
-    <label for="mensaje">Ingresa tu consulta financiera:</label>
-    <textarea id="mensaje" placeholder="Ej: ¿Cuál es la tasa efectiva anual de un 12% mensual con un monto de 10,000 por 1 año?"></textarea>
+    
+    <label class="cuentanos" for="mensaje">Cuentanos sobre tu producto:</label>
+    <textarea id="mensaje" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
 
     <div class="botones">
-      <button id="reiniciarBtn">🔄 Reiniciar</button>
-      <button id="enviarBtn">Enviar →</button>
+      <button id="reiniciarBtn" class="boton-secundario">🔄 Reiniciar</button>
+      <button id="enviarBtn" class="boton-primario">
+        Enviar →
+        <span id="spinner" class="spinner"></span>
+      </button>
     </div>
 
-    <h3>Resultados Qredi</h3>
+    <h3>Respuesta GPT:</h3>
     <pre id="respuesta">Esperando entrada...</pre>
+
     <div class="resultados">
-      <p id="respuestaTasa"></p>
-      <p id="respuestaInteres"></p>
+      <div>
+        <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
+        <span id="respuestaTasa" class="resultado-valor">--</span>
+      </div>
+
+      <div>
+        <div class="resultado-label">Interés Total Calculado</div>
+        <span id="respuestaInteres" class="resultado-valor">--</span>
+      </div>
+
       <canvas id="graficoTasa"></canvas>
     </div>
   </div>

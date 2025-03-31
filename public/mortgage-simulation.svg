@@ -1,0 +1,61 @@
+<svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="400" rx="8" fill="#F9FAFB"/>
+  
+  <!-- House Icon -->
+  <rect x="50" y="50" width="130" height="80" fill="#E0E7FF" stroke="#4338CA" stroke-width="2"/>
+  <path d="M30 90 L115 30 L200 90" stroke="#4338CA" stroke-width="2" fill="none"/>
+  <rect x="90" y="100" width="30" height="30" fill="white" stroke="#4338CA" stroke-width="1"/>
+  
+  <!-- Chart -->
+  <rect x="50" y="170" width="400" height="180" rx="8" fill="white" stroke="#E5E7EB"/>
+  
+  <!-- Chart Title -->
+  <text x="250" y="195" font-family="Arial" font-size="14" font-weight="bold" fill="#1F2A37" text-anchor="middle">Comparativa de Tipos de Hipoteca - $1,500,000</text>
+  
+  <!-- Y Axis (Interest Paid) -->
+  <line x1="100" y1="220" x2="100" y2="320" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="95" y="220" font-family="Arial" font-size="10" fill="#6B7280" text-anchor="end">$2M</text>
+  <text x="95" y="250" font-family="Arial" font-size="10" fill="#6B7280" text-anchor="end">$1.5M</text>
+  <text x="95" y="280" font-family="Arial" font-size="10" fill="#6B7280" text-anchor="end">$1M</text>
+  <text x="95" y="310" font-family="Arial" font-size="10" fill="#6B7280" text-anchor="end">$0.5M</text>
+  
+  <!-- X Axis (Mortgage Types) -->
+  <line x1="100" y1="320" x2="400" y2="320" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <!-- Bars -->
+  <rect x="150" y="230" width="40" height="90" fill="#4338CA" opacity="0.8"/>
+  <rect x="250" y="240" width="40" height="80" fill="#10B981" opacity="0.8"/>
+  <rect x="350" y="210" width="40" height="110" fill="#F59E0B" opacity="0.8"/>
+  
+  <!-- Bar Labels -->
+  <text x="170" y="335" font-family="Arial" font-size="10" fill="#1F2A37" text-anchor="middle">Tasa Fija</text>
+  <text x="270" y="335" font-family="Arial" font-size="10" fill="#1F2A37" text-anchor="middle">Tasa Mixta</text>
+  <text x="370" y="335" font-family="Arial" font-size="10" fill="#1F2A37" text-anchor="middle">Tasa Variable</text>
+  
+  <!-- Bar Values -->
+  <text x="170" y="225" font-family="Arial" font-size="10" fill="#4338CA" text-anchor="middle">$1.2M</text>
+  <text x="270" y="235" font-family="Arial" font-size="10" fill="#10B981" text-anchor="middle">$1.1M</text>
+  <text x="370" y="205" font-family="Arial" font-size="10" fill="#F59E0B" text-anchor="middle">$1.3M</text>
+  
+  <!-- Explanation Box -->
+  <rect x="250" y="50" width="200" height="100" rx="8" fill="white" stroke="#E5E7EB"/>
+  <text x="260" y="70" font-family="Arial" font-size="12" font-weight="bold" fill="#1F2A37">Tipos de Tasas de Interés</text>
+  <text x="260" y="90" font-family="Arial" font-size="10" fill="#6B7280">- Fija: La tasa nunca cambia</text>
+  <text x="260" y="110" font-family="Arial" font-size="10" fill="#6B7280">- Mixta: Fija por 3-5 años, luego</text>
+  <text x="265" y="125" font-family="Arial" font-size="10" fill="#6B7280">  se ajusta periódicamente</text>
+  <text x="260" y="140" font-family="Arial" font-size="10" fill="#6B7280">- Variable: Cambia con el mercado</text>
+  
+  <!-- Risk Visualization -->
+  <text x="130" y="355" font-family="Arial" font-size="10" fill="#1F2A37">Riesgo: Bajo</text>
+  <rect x="130" y="365" width="80" height="10" rx="5" fill="#ECFDF5"/>
+  <rect x="130" y="365" width="20" height="10" rx="5" fill="#10B981"/>
+  
+  <text x="230" y="355" font-family="Arial" font-size="10" fill="#1F2A37">Riesgo: Medio</text>
+  <rect x="230" y="365" width="80" height="10" rx="5" fill="#FEF3C7"/>
+  <rect x="230" y="365" width="40" height="10" rx="5" fill="#F59E0B"/>
+  
+  <text x="330" y="355" font-family="Arial" font-size="10" fill="#1F2A37">Riesgo: Alto</text>
+  <rect x="330" y="365" width="80" height="10" rx="5" fill="#FEE2E2"/>
+  <rect x="330" y="365" width="60" height="10" rx="5" fill="#EF4444"/>
+</svg>
+

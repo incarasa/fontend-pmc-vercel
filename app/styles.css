@@ -128,6 +128,13 @@ button {
   background-color: #e0e0e0;
 }
 
+/* === Estado deshabilitado del botón === */
+button:disabled {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+}
+
 /* === Spinner === */
 .spinner {
   width: 18px;

@@ -4,6 +4,7 @@
   ==============================
 */
 
+let ultimaRespuesta = null;
 /**
  * Objeto que define cuántos periodos hay en un año, según la temporalidad.
  * Por ejemplo, "mensual" implica 12 periodos en un año.
@@ -202,6 +203,7 @@ enviarBtn.addEventListener("click", async () => {
       respuestaEl.textContent = data.pregunta;
     } else {
       respuestaEl.textContent = JSON.stringify(data, null, 2);
+      ultimaRespuesta = data;
 
       try {
         // Convertimos la tasa a efectiva anual
@@ -255,3 +257,80 @@ reiniciarBtn.addEventListener("click", () => {
   if (grafico instanceof Chart) grafico.destroy();
   // Dejaría la caja de texto con lo que se escribió
 });
+
+// Botón de compartir
+
+function generarEnlace(data) {
+  const base64 = btoa(JSON.stringify(data));
+  return `${window.location.origin}/app/compartido.html?data=${base64}`;
+}
+
+
+
+async function acortarEnlace(enlaceLargo) {
+  try {
+    const res = await fetch(`https://api.tinyurl.com/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer FUJUHFl3afF0YKJqRUBC6CLnv8doRvldCzEYX0zWDuSWdRaFHxmO7Tzs9FRm"
+      },
+      body: JSON.stringify({
+        url: enlaceLargo,
+        domain: "tinyurl.com"
+      })
+    });
+
+    const json = await res.json();
+    return json.data?.tiny_url || enlaceLargo;
+  } catch (error) {
+    console.error("Error acortando URL:", error);
+    return enlaceLargo; // fallback
+  }
+}
+
+
+document.getElementById("compartirBtn").addEventListener("click", () => {
+  const datos = {
+    mensaje: document.getElementById("mensaje").value,
+    respuesta: document.getElementById("respuesta").innerText,
+    tasa: document.getElementById("respuestaTasa").innerText,
+    interes: document.getElementById("respuestaInteres").innerText,
+    monto: ultimaRespuesta.monto
+  };
+
+  abrirModalConEnlace(datos);
+});
+
+async function abrirModalConEnlace(data) {
+  const enlaceLargo = generarEnlace(data); 
+  const enlaceCorto = await acortarEnlace(enlaceLargo); 
+  document.getElementById("inputEnlaceCompartir").value = enlaceCorto; 
+  document.getElementById("modalCompartir").classList.remove("oculto");
+}
+
+
+function copiarEnlace() {
+  const input = document.getElementById("inputEnlaceCompartir");
+  input.select();
+  input.setSelectionRange(0, 99999); // Compatibilidad móvil
+  document.execCommand("copy");
+
+  // Opcional: notificación rápida
+  alert("¡Enlace copiado al portapapeles!");
+}
+
+
+function cerrarModal() {
+  document.getElementById("modalCompartir").classList.add("oculto");
+}
+
+
+// Botones de compartir en apps
+
+function compartirWhatsapp(){
+  const enlace = document.getElementById("inputEnlaceCompartir").value;
+  const mensaje = `¡Mira esta consulta financiera que hice en Qredi! ${enlace}`;
+  const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+}

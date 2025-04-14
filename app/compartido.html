@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta compartida - Qredi</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="contenedor">
+    <h1 class="titulo-principal">Consulta compartida 📄</h1>
+    <p class="subtitulo">Este es el resumen de una consulta financiera compartida contigo:</p>
+
+    <div class="bloque">
+      <h3>Mensaje original:</h3>
+      <p id="mensaje" class="subtitulo"></p>
+    </div>
+
+    <div class="bloque">
+      <h3>Respuesta del asistente:</h3>
+      <pre id="respuesta"></pre>
+    </div>
+
+    <div class="resultados">
+
+      <div>
+        <div class="resultado-label">Monto inicial</div>
+        <span id="respuestaMonto" class="resultado-valor">--</span>
+      </div>
+
+    
+      <div>
+        <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
+        <span id="respuestaTasa" class="resultado-valor">--</span>
+      </div>
+
+      <div>
+        <div class="resultado-label">Interés Total Calculado</div>
+        <span id="respuestaInteres" class="resultado-valor">--</span>
+      </div>
+
+      <canvas id="graficoTasaCompartida" width="400" height="200"></canvas>
+    </div>
+
+    <div class="registro-cta">
+        <p class="cuentanos">¿Te gustaría guardar tus resultados y recibir asesoría personalizada?</p>
+        <button onclick="irARegistro()">Registrarme ahora →</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="compartido.js"></script>
+</body>
+</html>

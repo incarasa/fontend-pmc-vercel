@@ -47,7 +47,33 @@
 
       <canvas id="graficoTasa"></canvas>
     </div>
+    <div class="boton-compartir">
+      <button id="compartirBtn" class="boton-primario">📤 Compartir</button>
+    </div>
   </div>
+  <div id="modalCompartir" class="modal oculto">
+    <div class="modal-contenido">
+      <h3>Compartir</h3>
+          <!-- Espacio reservado para apps -->
+      <div class="iconos-compartir">
+        <button onclick="compartirWhatsapp()" title="WhatsApp" class="icono">
+          <img src="/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
+        </button>
+        <div class="icono-placeholder"></div>
+        <div class="icono-placeholder"></div>
+        <div class="icono-placeholder"></div>
+      </div>
+ 
+      <!-- Campo de enlace y botón copiar -->
+      <div class="enlace-copiar">
+        <input type="text" id="inputEnlaceCompartir" readonly />
+        <button onclick="copiarEnlace()">Copiar</button>
+      </div>
+  
+      <button class="cerrar-modal" onclick="cerrarModal()">✖</button>
+    </div>
+  </div>
+  
 
   <footer>
     Qredi © 2025 - Tu asistente financiero inteligente

@@ -28,11 +28,6 @@ function generarGrafico(monto, interes) {
   });
 }
 
-function irARegistro() {
-    // Cambiar cuando ya este la página de registro
-    window.location.href = "/registro.html";
-}
-  
 
 // Función para decodificar los datos del enlace y mostrarlos
 (function mostrarConsultaCompartida() {

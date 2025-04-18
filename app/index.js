@@ -343,7 +343,7 @@ function copiarEnlace() {
   document.execCommand("copy");
 
   // Opcional: notificación rápida
-  alert("¡Enlace copiado al portapapeles!");
+  showMessage("📋 ¡Enlace copiado al portapapeles!");
 }
 
 
@@ -359,4 +359,26 @@ function compartirWhatsapp(){
   const mensaje = `¡Mira esta consulta financiera que hice en Qredi! ${enlace}`;
   const url = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
+}
+
+function showMessage(text, type = "success") {
+  const message = document.createElement("div");
+  message.textContent = text;
+  message.style.position = "fixed";
+  message.style.top = "20px";
+  message.style.left = "50%";
+  message.style.transform = "translateX(-50%)";
+  message.style.background = type === "success" ? "#4caf50" : "#f44336"; // verde o rojo
+  message.style.color = "#fff";
+  message.style.padding = "1rem";
+  message.style.borderRadius = "5px";
+  message.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+  message.style.zIndex = "9999";
+  message.style.fontWeight = "bold";
+  document.body.appendChild(message);
+
+  // Quitar después de 3 segundos
+  setTimeout(() => {
+    message.remove();
+  }, 3000);
 }

@@ -9,88 +9,92 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <h1 class="titulo-principal">Qredi</h1>
-    <p class="subtitulo">
-      💡 Calcula tasas de interés, analiza inversiones y obtén respuestas <br />
-      a tus consultas financieras con nuestro asistente impulsado por IA.
-    </p>
-  </header>
+  <div id="loader" style="text-align: center; padding: 2rem; font-size: 1.2rem;">
+    🔐 Verificando sesión...
+  </div>
+  <div id="app" style="opacity: 0; transition: opacity 0.3s;">
+    <header>
+      <h1 class="titulo-principal">Qredi</h1>
+      <p class="subtitulo">
+        💡 Calcula tasas de interés, analiza inversiones y obtén respuestas <br />
+        a tus consultas financieras con nuestro asistente impulsado por IA.
+      </p>
+    </header>
 
-  <div class="contenedor">
-    <h2>Qredi - Asistente Financiero</h2>
+    <div class="contenedor">
+      <h2>Qredi - Asistente Financiero</h2>
     
-    <label class="cuentanos" for="mensaje">Cuéntanos sobre tu producto:</label>
-    <div class="instrucciones-subtitulo">
-      <p class="nota-importante">No olvides incluir:</p>
-      <ul class="lista-instrucciones">
-        <li>Monto del crédito.</li>
-        <li>Tasa de interés (5%, 10%, etc)</li>
-        <li>Tipo de tasa (nominal anual, efectiva, mes vencido, etc.)</li>
-        <li>Plazo del crédito (5 años, 80 días, etc)</li>
-      </ul>
-    </div>
-
-    <br>
-
-    <textarea id="mensaje" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
-
-    <div class="botones">
-      <button id="reiniciarBtn" class="boton-secundario">🔄 Reiniciar</button>
-      <button id="enviarBtn" class="boton-primario">
-        Enviar →
-        <span id="spinner" class="spinner"></span>
-      </button>
-    </div>
-
-    <h3>Respuesta GPT:</h3>
-    <pre id="respuesta">Esperando entrada...</pre>
-
-    <div class="resultados">
-      <div>
-        <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
-        <span id="respuestaTasa" class="resultado-valor">--</span>
+      <label class="cuentanos" for="mensaje">Cuéntanos sobre tu producto:</label>
+      <div class="instrucciones-subtitulo">
+        <p class="nota-importante">No olvides incluir:</p>
+        <ul class="lista-instrucciones">
+          <li>Monto del crédito.</li>
+          <li>Tasa de interés (5%, 10%, etc)</li>
+          <li>Tipo de tasa (nominal anual, efectiva, mes vencido, etc.)</li>
+          <li>Plazo del crédito (5 años, 80 días, etc)</li>
+        </ul>
       </div>
 
-      <div>
-        <div class="resultado-label">Interés Total Calculado</div>
-        <span id="respuestaInteres" class="resultado-valor">--</span>
-      </div>
+      <br>
 
-      <canvas id="graficoTasa"></canvas>
-    </div>
-    <div class="boton-compartir">
-      <button id="compartirBtn" class="boton-primario">📤 Compartir</button>
-    </div>
-  </div>
-  <div id="modalCompartir" class="modal oculto">
-    <div class="modal-contenido">
-      <h3>Compartir</h3>
-          <!-- Espacio reservado para apps -->
-      <div class="iconos-compartir">
-        <button onclick="compartirWhatsapp()" title="WhatsApp" class="icono">
-          <img src="/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
+      <textarea id="mensaje" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
+
+      <div class="botones">
+        <button id="reiniciarBtn" class="boton-secundario">🔄 Reiniciar</button>
+        <button id="enviarBtn" class="boton-primario">
+          Enviar →
+          <span id="spinner" class="spinner"></span>
         </button>
-        <div class="icono-placeholder"></div>
-        <div class="icono-placeholder"></div>
-        <div class="icono-placeholder"></div>
       </div>
- 
-      <!-- Campo de enlace y botón copiar -->
-      <div class="enlace-copiar">
-        <input type="text" id="inputEnlaceCompartir" readonly />
-        <button onclick="copiarEnlace()">Copiar</button>
+
+      <h3>Respuesta GPT:</h3>
+      <pre id="respuesta">Esperando entrada...</pre>
+
+      <div class="resultados">
+        <div>
+          <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
+          <span id="respuestaTasa" class="resultado-valor">--</span>
+        </div>
+
+        <div>
+          <div class="resultado-label">Interés Total Calculado</div>
+          <span id="respuestaInteres" class="resultado-valor">--</span>
+        </div>
+
+        <canvas id="graficoTasa"></canvas>
       </div>
-  
-      <button class="cerrar-modal" onclick="cerrarModal()">✖</button>
+      <div class="boton-compartir">
+        <button id="compartirBtn" class="boton-primario">📤 Compartir</button>
+      </div>
     </div>
-  </div>
+    <div id="modalCompartir" class="modal oculto">
+      <div class="modal-contenido">
+        <h3>Compartir</h3>
+          <!-- Espacio reservado para apps -->
+        <div class="iconos-compartir">
+          <button onclick="compartirWhatsapp()" title="WhatsApp" class="icono">
+            <img src="/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
+          </button>
+          <div class="icono-placeholder"></div>
+          <div class="icono-placeholder"></div>
+          <div class="icono-placeholder"></div>
+        </div>
+ 
+        <!-- Campo de enlace y botón copiar -->
+        <div class="enlace-copiar">
+          <input type="text" id="inputEnlaceCompartir" readonly />
+          <button onclick="copiarEnlace()">Copiar</button>
+        </div>
+  
+        <button class="cerrar-modal" onclick="cerrarModal()">✖</button>
+      </div>
+    </div>
   
 
-  <footer>
-    Qredi © 2025 - Tu asistente financiero inteligente
-  </footer>
-
-  <script src="index.js"></script>
+    <footer>
+      Qredi © 2025 - Tu asistente financiero inteligente
+    </footer>
+  </div>
+  <script type="module" src="auth-check.js?v=1.0.1"></script>
 </body>
 </html>

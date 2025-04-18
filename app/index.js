@@ -44,14 +44,14 @@ function cambiarTemporalidadEfectiva(tasa, periodos) {
  *      la nominal anual es 2% * 2 = 4%.
  *   2) Una vez se tiene la Tasa Nominal Anual, se reparte entre la capitalización
  *      que se desee (por ejemplo, mes vencido => dividir entre 12). 
- *   3) Esa tasa es la "tasa por subperiodo" (nominal anual / 12, si la capitalización es mensual).
+ *   3) Esa tasa es la "tasa por subperiodo" (nominal anual / mCap).
  *   4) Finalmente, se convierte esa tasa de subperiodo a efectiva anual con la
- *      fórmula (1 + subPeriodRate)^(nSubperiodosEnAño) - 1.
+ *      fórmula (1 + subPeriodRate)^(mCap) - 1.
  * 
  * Ejemplo: Tasa nominal semestral mes vencido de 2%.
- * - Paso 1: nominal anual = 2% * 2 = 4%.
- * - Paso 2: capitalización mensual => 4% / 12 = 0.3333...% mensual.
- * - Paso 3: Efectiva Anual = (1 + 0.003333...)^12 - 1 => ~4.07%.
+ * - Paso 1: nominal anual = 2% * 2 = 4% anual
+ * - Paso 2: capitalización mensual => 4% / 12 = 0.0033... (0.33%)
+ * - Paso 3: Efectiva Anual = (1 + 0.0033...)^12 - 1 => ~4.07%.
  * 
  * @param {Object} data 
  * @param {number} data.valor_tasa - Valor numérico de la tasa, ej: 2 => 2%.
@@ -102,8 +102,17 @@ function convertirTasa(data) {
 }
 
 /**
- * Calcula los intereses compuestos totales a partir de un monto inicial, un plazo en días
- * y una Tasa Efectiva Anual (TEA).
+ * Calcula los intereses totales de un crédito a cuota fija (sistema francés),
+ * tomando en cuenta que el plazo se ingresa en días y se convierte a meses.
+ * 
+ * Pasos:
+ * 1) Convertir la TEA a decimal.
+ * 2) Sacar la Tasa Efectiva Mensual (TEM): (1 + TEA_decimal)^(1/12) - 1.
+ * 3) Convertir plazo en días a meses: n = Math.ceil(plazoDias / 30).
+ * 4) Calcular la cuota con la fórmula de francés: 
+ *     cuota = M * [ i * (1 + i)^n ] / [ (1 + i)^n - 1 ],
+ *    donde M es el monto, i la TEM y n el número de meses.
+ * 5) intereses = (cuota * n) - M.
  * 
  * @param {Object} data - Objeto con los datos necesarios.
  * @param {number} tea - Tasa efectiva anual en porcentaje.
@@ -112,15 +121,34 @@ function convertirTasa(data) {
 function calcularInteresesCompuestos(data, tea) {
   const montoInicial = parseFloat(data["monto"]);
   const plazoDias = parseFloat(data["plazo_unidad_de_tiempo"]);
-  const tasaDecimal = tea / 100;
 
   if (isNaN(plazoDias) || isNaN(montoInicial)) {
     throw new Error("Monto o plazo no son válidos.");
   }
 
-  const factorTiempo = plazoDias / 365;
-  const capitalTotal = montoInicial * Math.pow((1 + tasaDecimal), factorTiempo);
-  return capitalTotal - montoInicial;
+  // 1) Convertir la TEA a decimal
+  const teaDecimal = tea / 100;
+
+  // 2) Tasa Efectiva Mensual (TEM)
+  const i = Math.pow(1 + teaDecimal, 1 / 12) - 1;
+
+  // 3) Convertir días a meses, redondeando hacia arriba
+  const n = Math.ceil(plazoDias / 30);
+
+  // 4) Calcular la cuota (sistema francés)
+  //    cuota = P * [ i(1 + i)^n / ((1 + i)^n - 1) ]
+  if (n <= 0) {
+    throw new Error("El plazo convertido a meses no puede ser 0 o negativo.");
+  }
+
+  const factor = Math.pow(1 + i, n);
+  const cuota = montoInicial * ( i * factor ) / ( factor - 1 );
+
+  // 5) Sumar pagos y restar capital
+  const totalPagado = cuota * n;
+  const intereses = totalPagado - montoInicial;
+
+  return intereses;
 }
 
 // Variable para conservar la referencia al gráfico, para destruirlo cuando sea necesario
@@ -130,7 +158,7 @@ let grafico = null;
  * Genera y muestra un gráfico tipo donut comparando el monto inicial vs. el interés.
  * 
  * @param {number} monto - Monto inicial.
- * @param {number} interes - Interés generado.
+ * @param {number} interes - Interés calculado.
  */
 function generarGrafico(monto, interes) {
   const ctx = document.getElementById('graficoTasa').getContext('2d');
@@ -210,7 +238,7 @@ enviarBtn.addEventListener("click", async () => {
         const tea = convertirTasa(data);
         respuestaTasaEl.textContent = `${tea.toFixed(2)}%`;
 
-        // Calculamos el interés compuesto
+        // Calculamos el interés (con el nuevo método)
         const interes = calcularInteresesCompuestos(data, tea);
         respuestaInteresEl.textContent = `${interes.toLocaleString('es-ES', { 
           minimumFractionDigits: 0, 
@@ -220,8 +248,6 @@ enviarBtn.addEventListener("click", async () => {
         // Generar gráfico
         generarGrafico(data.monto, interes);
 
-        // Si deseas reiniciar la conversación en cada petición exitosa:
-        // historialConversacion = "";
       } catch (error) {
         respuestaTasaEl.textContent = `Error en conversión: ${error.message}`;
         respuestaInteresEl.textContent = "";
@@ -233,7 +259,7 @@ enviarBtn.addEventListener("click", async () => {
   } finally {
     // Ocultar el spinner
     spinnerEl.style.display = "none";
-    // NO limpiamos el contenido del textarea para que se conserve
+    // No limpiamos el contenido del textarea para que se conserve
     // mensajeEl.value = ""; // <--- Eliminado
   }
 });

@@ -41,6 +41,7 @@ header {
   max-width: 700px;
   margin: 0 auto;
   margin-bottom: 15px;
+  margin-left: 0px;
 }
 
 /* === Contenedor principal === */
@@ -341,4 +342,14 @@ footer {
   text-align: center;
   color: #aaa;
   font-size: 0.9rem;
+}
+
+
+.lista-instrucciones {
+  margin-top: 2px;
+}
+
+.instrucciones-subtitulo {
+  font-style: italic;
+  color: #666; /* gris más claro */
 }

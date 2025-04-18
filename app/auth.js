@@ -1,15 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAu-1qgHL7sSr3YErtFSWLTTFZLP1CiC0s",
-  authDomain: "qredi-auth.firebaseapp.com",
-  projectId: "qredi-auth",
-  storageBucket: "qredi-auth.firebasestorage.app",
-  messagingSenderId: "204030499494",
-  appId: "1:204030499494:web:1a63a5610596bfa4e53267",
-  measurementId: "G-QTCRLL8N1M"
-};
+import { firebaseConfig } from "../config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

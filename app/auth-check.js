@@ -3,10 +3,10 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 
 import { firebaseConfig } from "../config.js";
 
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Espera confirmación de sesión
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Sesión activa:", user.email);
@@ -14,12 +14,9 @@ onAuthStateChanged(auth, (user) => {
     const app = document.getElementById("app");
     app.style.opacity = "1";
 
-    
     const script = document.createElement("script");
     script.src = "index.js";
     document.body.appendChild(script);
-
-    
   } else {
     alert("Debes iniciar sesión para usar el simulador.");
     window.location.href = "login.html";

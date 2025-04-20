@@ -218,7 +218,7 @@ enviarBtn.addEventListener("click", async () => {
 
   try {
     // Enviar la solicitud al backend
-    const res = await fetch("http://localhost:3000/chatGPT", {
+    const res = await fetch("https://backend-pmc.onrender.com/chatGPT", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ texto_usuario: historialConversacion })

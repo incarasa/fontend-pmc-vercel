@@ -288,7 +288,7 @@ reiniciarBtn.addEventListener("click", () => {
 
 function generarEnlace(data) {
   const base64 = btoa(JSON.stringify(data));
-  return `${window.location.origin}/app/compartido.html?data=${base64}`;
+  return `${window.location.origin}/compartido.html?data=${base64}`;
 }
 
 

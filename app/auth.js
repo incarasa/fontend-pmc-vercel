@@ -53,7 +53,7 @@ if (loginForm) {
       await signInWithEmailAndPassword(auth, email, password)
       showMessage("✅ Sesión iniciada con éxito");
       setTimeout(() => {
-        window.location.href = "simu.html";
+        window.location.href = "index.html";
       }, 1000);
     } catch (error) {
       console.error("Error al iniciar sesión:", error);

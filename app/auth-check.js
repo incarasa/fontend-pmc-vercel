@@ -15,7 +15,7 @@ onAuthStateChanged(auth, (user) => {
     app.style.opacity = "1";
 
     const script = document.createElement("script");
-    script.src = "simu.js";
+    script.src = "index.js";
     document.body.appendChild(script);
   } else {
     alert("Debes iniciar sesión para usar el simulador.");

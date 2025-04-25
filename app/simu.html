@@ -7,8 +7,95 @@
 
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #312e81; /* Indigo-900 */
+      color: white;
+      z-index: 9999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  
+    .topbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+    }
+  
+    .topbar-logo .logo-text {
+      font-weight: bold;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+    }
+  
+    .topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  
+    .topbar-links a {
+      text-decoration: none;
+      color: #c7d2fe;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+  
+    .topbar-links a:hover {
+      color: #ffffff;
+    }
+  
+    .topbar-links .boton-creditos {
+      background-color: #4f46e5;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+  
+    .topbar-links .boton-creditos:hover {
+      background-color: #4338ca;
+    }
+  
+    body {
+      margin: 0;
+      padding-top: 64px; /* espacio para barra fija */
+      font-family: system-ui, sans-serif;
+    }
+  </style>
+  
 </head>
+
 <body>
+  <!-- 🔵 Barra superior fija -->
+  <div class="topbar">
+    <div class="topbar-content">
+      <div class="topbar-logo">
+        <span class="logo-text">Qredi</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#mensaje">Simular</a>
+        <a href="#respuesta">Resultado</a>
+        <a href="#graficoTasa">Gráfico</a>
+        <a href="#faq">FAQ</a>
+        <button class="boton-creditos" onclick="location.href='mis-creditos.html'">Mis Créditos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🟢 App principal -->
   <div id="app" style="opacity: 0; transition: opacity 0.3s;">
     <header>
       <h1 class="titulo-principal">Qredi</h1>
@@ -20,7 +107,7 @@
 
     <div class="contenedor">
       <h2>Qredi - Asistente Financiero</h2>
-    
+
       <label class="cuentanos" for="mensaje">Cuéntanos sobre tu producto:</label>
       <div class="instrucciones-subtitulo">
         <p class="nota-importante">No olvides incluir:</p>
@@ -32,7 +119,7 @@
         </ul>
       </div>
 
-      <br>
+      <br />
 
       <textarea id="mensaje" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
 
@@ -60,14 +147,17 @@
 
         <canvas id="graficoTasa"></canvas>
       </div>
+
       <div class="boton-compartir">
         <button id="compartirBtn" class="boton-primario">📤 Compartir</button>
       </div>
     </div>
+
+    <!-- Modal para compartir -->
     <div id="modalCompartir" class="modal oculto">
       <div class="modal-contenido">
         <h3>Compartir</h3>
-          <!-- Espacio reservado para apps -->
+
         <div class="iconos-compartir">
           <button onclick="compartirWhatsapp()" title="WhatsApp" class="icono">
             <img src="/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
@@ -76,22 +166,23 @@
           <div class="icono-placeholder"></div>
           <div class="icono-placeholder"></div>
         </div>
- 
-        <!-- Campo de enlace y botón copiar -->
+
         <div class="enlace-copiar">
           <input type="text" id="inputEnlaceCompartir" readonly />
           <button onclick="copiarEnlace()">Copiar</button>
         </div>
-  
+
         <button class="cerrar-modal" onclick="cerrarModal()">✖</button>
       </div>
     </div>
-  
 
     <footer>
       Qredi © 2025 - Tu asistente financiero inteligente
     </footer>
   </div>
+
+  <!-- Scripts -->
   <script type="module" src="auth-check.js?v=1.0.1"></script>
+  <script src="main.js"></script>
 </body>
 </html>

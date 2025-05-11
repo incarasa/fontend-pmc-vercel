@@ -5,50 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Consulta compartida - Qredi</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Add some basic styling for the dynamically added sections */
+    .shared-credit-result {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 30px; /* Space between credit sections */
+        border-radius: 8px;
+        background-color: #f9fafb; /* Light grey background */
+    }
+
+     .shared-credit-result h3 {
+        margin-top: 0;
+        color: #4f46e5; /* Indigo */
+    }
+
+    .shared-credit-result h4 { /* Style for message/response subheadings */
+        margin-top: 15px;
+        margin-bottom: 5px;
+        color: #312e81; /* Darker Indigo */
+    }
+
+    .shared-credit-result .bloque pre { /* Style for the JSON response */
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 4px;
+        white-space: pre-wrap; /* Allow wrapping for long JSON */
+        word-wrap: break-word;
+    }
+
+     .shared-credit-result .resultados {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px dashed #ccc; /* Separator for results */
+     }
+
+     .shared-credit-result canvas {
+        margin-top: 20px;
+        background-color: white; /* White background for charts */
+        padding: 10px; /* Padding around the chart */
+        border-radius: 8px;
+     }
+
+  </style>
 </head>
 
 <body>
 
   <div class="contenedor">
     <h1 class="titulo-principal">Consulta compartida 📄</h1>
-    <p class="subtitulo">Este es el resumen de una consulta financiera compartida contigo:</p>
+    <p class="subtitulo">Este es el resumen de la(s) consulta(s) financiera(s) compartida(s) contigo:</p>
 
-    <div class="bloque">
-      <h3>Mensaje original:</h3>
-      <p id="mensaje" class="subtitulo"></p>
-    </div>
-
-    <div class="bloque">
-      <h3>Respuesta del asistente:</h3>
-      <pre id="respuesta"></pre>
-    </div>
-
-    <div class="resultados">
-
-      <div>
-        <div class="resultado-label">Monto inicial</div>
-        <span id="respuestaMonto" class="resultado-valor">--</span>
-      </div>
-
-    
-      <div>
-        <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
-        <span id="respuestaTasa" class="resultado-valor">--</span>
-      </div>
-
-      <div>
-        <div class="resultado-label">Interés Total Calculado</div>
-        <span id="respuestaInteres" class="resultado-valor">--</span>
-      </div>
-
-      <canvas id="graficoTasaCompartida" width="400" height="200"></canvas>
-    </div>
+    <div id="resultsContainer">
+      <p>Cargando datos...</p> </div>
 
     <div class="registro-cta">
         <p class="cuentanos">¿Te gustaría guardar tus resultados y recibir asesoría personalizada?</p>
         <button onclick="location.href='./signup.html'">Registrarme ahora →</button>
     </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="compartido.js"></script>
 </body>

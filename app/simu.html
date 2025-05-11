@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+    /* Keep your existing styles here */
     .topbar {
       position: fixed;
       top: 0;
@@ -19,7 +20,7 @@
       z-index: 9999;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-  
+
     .topbar-content {
       max-width: 1200px;
       margin: 0 auto;
@@ -28,31 +29,31 @@
       align-items: center;
       padding: 0.75rem 1.5rem;
     }
-  
+
     .topbar-logo .logo-text {
       font-weight: bold;
       font-size: 1.25rem;
       letter-spacing: 0.05em;
     }
-  
+
     .topbar-links {
       display: flex;
       align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
-  
+
     .topbar-links a {
       text-decoration: none;
       color: #c7d2fe;
       font-weight: 500;
       transition: color 0.2s ease;
     }
-  
+
     .topbar-links a:hover {
       color: #ffffff;
     }
-  
+
     .topbar-links .boton-creditos {
       background-color: #4f46e5;
       color: white;
@@ -64,39 +65,103 @@
       cursor: pointer;
       white-space: nowrap;
     }
-  
+
     .topbar-links .boton-creditos:hover {
       background-color: #4338ca;
     }
-  
+
     body {
       margin: 0;
       padding-top: 64px; /* espacio para barra fija */
       font-family: system-ui, sans-serif;
     }
+
+    /* Add styles for the new elements */
+    .credit-section {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 30px; /* Space between credit sections */
+        border-radius: 8px;
+        background-color: #f9fafb; /* Light grey background */
+    }
+
+    .credit-section h3 {
+        margin-top: 0;
+        color: #4f46e5; /* Indigo */
+    }
+
+    #addCreditBtn {
+        display: block; /* Make it a block element */
+        margin: 20px auto; /* Center the button */
+        padding: 10px 20px;
+        font-size: 1rem;
+        background-color: #22c55e; /* Green */
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    #addCreditBtn:hover {
+        background-color: #16a34a; /* Darker green */
+    }
+
+    /* Ensure existing styles for textarea, buttons, results, canvas apply within .credit-section */
+    .credit-section textarea {
+        width: 100%; /* Make textarea full width */
+        margin-bottom: 10px;
+    }
+
+    .credit-section .botones {
+        margin-bottom: 20px;
+    }
+
+    .credit-section .resultados {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px dashed #ccc; /* Separator for results */
+    }
+
+    .credit-section canvas {
+        margin-top: 20px;
+        background-color: white; /* White background for charts */
+        padding: 10px; /* Padding around the chart */
+        border-radius: 8px;
+    }
+
+    /* Adjust the selector for the first section's label if needed */
+    .cuentanos {
+      display: block; /* Ensure label is on its own line */
+      margin-bottom: 5px; /* Space between label and textarea */
+    }
+
+    .instrucciones-subtitulo {
+        margin-bottom: 10px; /* Space after instructions */
+    }
+
+
   </style>
-  
+
 </head>
 
 <body>
-  <!-- 🔵 Barra superior fija -->
   <div class="topbar">
     <div class="topbar-content">
       <div class="topbar-logo">
         <span class="logo-text">Qredi</span>
       </div>
       <div class="topbar-links">
-        <a href="#mensaje">Simular</a>
-        <a href="#respuesta">Resultado</a>
-        <a href="#graficoTasa">Gráfico</a>
+        <a href="#app">Simular</a>
+        <a href="#app">Resultado</a>
+        <a href="#app">Gráfico</a>
         <a href="#faq">FAQ</a>
         <button class="boton-creditos" onclick="location.href='mis-creditos.html'">Mis Créditos</button>
       </div>
     </div>
   </div>
 
-  <!-- 🟢 App principal -->
-  <div id="app" style="opacity: 0; transition: opacity 0.3s;">
+  <div id="app">
     <header>
       <h1 class="titulo-principal">Qredi</h1>
       <p class="subtitulo">
@@ -108,59 +173,63 @@
     <div class="contenedor">
       <h2>Qredi - Asistente Financiero</h2>
 
-      <label class="cuentanos" for="mensaje">Cuéntanos sobre tu producto:</label>
-      <div class="instrucciones-subtitulo">
-        <p class="nota-importante">No olvides incluir:</p>
-        <ul class="lista-instrucciones">
-          <li>Monto del crédito.</li>
-          <li>Tasa de interés (5%, 10%, etc)</li>
-          <li>Tipo de tasa (nominal anual, efectiva, mes vencido, etc.)</li>
-          <li>Plazo del crédito (5 años, 80 días, etc)</li>
-        </ul>
-      </div>
+      <div class="credit-section" data-credit-index="0">
 
-      <br />
-
-      <textarea id="mensaje" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
-
-      <div class="botones">
-        <button id="reiniciarBtn" class="boton-secundario">🔄 Reiniciar</button>
-        <button id="enviarBtn" class="boton-primario">
-          Enviar →
-          <span id="spinner" class="spinner"></span>
-        </button>
-      </div>
-
-      <h3>Respuesta GPT:</h3>
-      <pre id="respuesta">Esperando entrada...</pre>
-
-      <div class="resultados">
-        <div>
-          <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
-          <span id="respuestaTasa" class="resultado-valor">--</span>
+        <label class="cuentanos" for="mensaje_0">Cuéntanos sobre tu producto:</label>
+        <div class="instrucciones-subtitulo">
+          <p class="nota-importante">No olvides incluir:</p>
+          <ul class="lista-instrucciones">
+            <li>Monto del crédito.</li>
+            <li>Tasa de interés (5%, 10%, etc)</li>
+            <li>Tipo de tasa (nominal anual, efectiva, mes vencido, etc.)</li>
+            <li>Plazo del crédito (5 años, 80 días, etc)</li>
+          </ul>
         </div>
 
-        <div>
-          <div class="resultado-label">Interés Total Calculado</div>
-          <span id="respuestaInteres" class="resultado-valor">--</span>
+        <br />
+
+        <textarea id="mensaje_0" placeholder="Ej: Me ofrecen un crédito por 2 millones con una tasa del 3% mes vencido a un plazo de 3 años"></textarea>
+
+        <div class="botones">
+          <button class="boton-secundario reiniciar-btn" data-credit-index="0">🔄 Reiniciar</button>
+          <button class="boton-primario enviar-btn" data-credit-index="0">
+            Enviar →
+            <span class="spinner"></span> </button>
         </div>
 
-        <canvas id="graficoTasa"></canvas>
-      </div>
+        <h3>Respuesta GPT:</h3>
+        <pre id="respuesta_0">Esperando entrada...</pre>
 
-      <div class="boton-compartir">
+        <div class="resultados">
+          <div>
+            <div class="resultado-label">TEA (Tasa Efectiva Anual)</div>
+            <span id="respuestaTasa_0" class="resultado-valor">--</span>
+          </div>
+
+          <div>
+            <div class="resultado-label">Interés Total Calculado</div>
+            <span id="respuestaInteres_0" class="resultado-valor">--</span>
+          </div>
+
+          <canvas id="graficoTasa_0"></canvas>
+        </div>
+
+        </div>
+      <button id="addCreditBtn">+ Más Créditos</button>
+
+
+       <div class="boton-compartir">
         <button id="compartirBtn" class="boton-primario">📤 Compartir</button>
       </div>
     </div>
 
-    <!-- Modal para compartir -->
     <div id="modalCompartir" class="modal oculto">
       <div class="modal-contenido">
         <h3>Compartir</h3>
 
         <div class="iconos-compartir">
           <button onclick="compartirWhatsapp()" title="WhatsApp" class="icono">
-            <img src="/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
+            <img src="/app/public/icons/whatsapp_icon.svg" alt="WhatsApp" />
           </button>
           <div class="icono-placeholder"></div>
           <div class="icono-placeholder"></div>
@@ -176,13 +245,10 @@
       </div>
     </div>
 
+
     <footer>
       Qredi © 2025 - Tu asistente financiero inteligente
     </footer>
   </div>
-
-  <!-- Scripts -->
-  <script type="module" src="auth-check.js?v=1.0.1"></script>
-  <script src="main.js"></script>
-</body>
+  <script src="index.js"></script> </body>
 </html>

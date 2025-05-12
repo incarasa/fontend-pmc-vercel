@@ -434,7 +434,7 @@ function generarEnlace(dataArray) { // <--- Parameter is an array
 
     // Ensure the shared page path is correct (e.g., /app/compartido.html)
    // ADJUST THIS PATH if your compartido.html is not in the /app directory
-   const compartidoPagePath = "/app/compartido.html"; // Example path - ADJUST THIS if needed
+   const compartidoPagePath = "/compartido.html"; // Example path - ADJUST THIS if needed
 
    return `${window.location.origin}${compartidoPagePath}?data=${base64}`;
 }

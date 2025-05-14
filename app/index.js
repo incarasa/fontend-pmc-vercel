@@ -337,7 +337,54 @@ contenedor.addEventListener('click', async (event) => {
                  // You can optionally add: creditSection.apiResponseData = null; here
             } else {
                 // *** MAKE THE CHANGE HERE! ***
-                respuestaPre.textContent = JSON.stringify(data, null, 2); // Show full API response in PRE tag
+                try {
+                  // Acceder a los valores individuales del JSON
+                  const tipoTasa = data.tipo_tasa || "N/A";
+                  const valorTasa = data.valor_tasa ? `${data.valor_tasa}%` : "N/A";
+                  const plazo = data.plazo_unidad_de_tiempo ? `${data.plazo_unidad_de_tiempo} días` : "N/A";
+                  const monto = data.monto ? `${parseFloat(data.monto).toLocaleString('es-ES')} COP` : "N/A";
+              
+                  // Crear una tarjeta visualmente atractiva para mostrar los resultados
+                  respuestaPre.innerHTML = `
+                      <div class="respuesta-tarjeta">
+                          <div class="respuesta-item">
+                              <span class="respuesta-label">💼 Tipo de Tasa:</span>
+                              <span class="respuesta-valor">${tipoTasa}</span>
+                          </div>
+                          <div class="respuesta-item">
+                              <span class="respuesta-label">📊 Valor de Tasa:</span>
+                              <span class="respuesta-valor">${valorTasa}</span>
+                          </div>
+                          <div class="respuesta-item">
+                              <span class="respuesta-label">⏳ Plazo:</span>
+                              <span class="respuesta-valor">${plazo}</span>
+                          </div>
+                          <div class="respuesta-item">
+                              <span class="respuesta-label">💰 Monto:</span>
+                              <span class="respuesta-valor">${monto}</span>
+                          </div>
+                      </div>
+                  `;
+              
+                  // Guardar el objeto completo como dato del elemento para reutilización posterior
+                  creditSection.apiResponseData = data;
+              
+                  // Mostrar la TEA e interés calculado
+                  const tea = convertirTasa(data);
+                  respuestaTasaSpan.textContent = `${tea.toFixed(2)}%`;
+              
+                  const interes = calcularInteresesCompuestos(data, tea);
+                  respuestaInteresSpan.textContent = `${interes.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} COP`;
+              
+                  // Generar el gráfico si el monto es válido
+                  if (data.monto !== undefined && !isNaN(parseFloat(data.monto))) {
+                      generarGrafico(graficoCanvas, parseFloat(data.monto), interes);
+                  }
+              } catch (error) {
+                  respuestaPre.textContent = "❌ Error al procesar los datos.";
+                  console.error("Error al mostrar los valores: ", error);
+              }
+              
 
                 // *** ADD THIS LINE: Store the raw API response data on the section element ***
                 creditSection.apiResponseData = data;

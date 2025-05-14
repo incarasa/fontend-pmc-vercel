@@ -354,3 +354,41 @@ footer {
   color: #666; /* gris más claro */
 }
 
+
+.respuesta-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background-color: #f3f4f6; /* Fondo gris claro */
+  border: 1px solid #d1d5db; /* Borde gris */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  color: #1f2937; /* Texto oscuro */
+}
+
+.respuesta-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: #e5e7eb; /* Fondo más claro para cada item */
+  border-radius: 6px;
+}
+
+.respuesta-label {
+  font-weight: bold;
+  color: #4f46e5; /* Color índigo */
+}
+
+.respuesta-valor {
+  font-weight: 600;
+  color: #111827; /* Texto más oscuro */
+}
+
+.respuesta-tarjeta .respuesta-item:hover {
+  background-color: #dbeafe; /* Fondo azul claro al pasar el ratón */
+  color: #1d4ed8; /* Texto azul */
+  transform: translateY(-2px); /* Efecto de elevación */
+  transition: all 0.2s ease;
+}

@@ -351,4 +351,5 @@ function mostrarConsultaCompartida() {
 }
 
 // Execute the display function when the DOM is fully loaded
+// Execute the display function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', mostrarConsultaCompartida); // Keep this

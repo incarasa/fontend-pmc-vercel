@@ -319,7 +319,7 @@ contenedor.addEventListener('click', async (event) => {
 
         try {
             // Fetch API code ...
-            const res = await fetch("https://backend-pmc.onrender.com/chatGPT", {
+            const res = await fetch("https://backend-pmc-vercel.vercel.app/chatGPT/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 // Sending only the current text_usuario, not historical context

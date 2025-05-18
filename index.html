@@ -14,8 +14,9 @@
     <div class="min-h-screen bg-dots relative overflow-hidden">
       <!-- Dotted background pattern -->
       <div
-        class="absolute inset-0 w-full h-full bg-[url('/dots-pattern.svg')] opacity-30 pointer-events-none"
-      ></div> 
+        style="background-image: url('/dots-pattern.svg'); opacity: 0.3;"
+        class="absolute inset-0 w-full h-full pointer-events-none bg-repeat"
+      ></div>
 
       <!-- Navigation -->
       <header class="relative z-10 container mx-auto py-4 flex justify-between items-center">
@@ -576,7 +577,7 @@
                   </div>
                 </div>
                 <img
-                  src="./step-2-compare.svg"
+                  src="/step-2-compare.svg"
                   alt="Paso 2: Visualiza las mejores opciones"
                   width="200"
                   height="150"

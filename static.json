@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/page.html",
+      "type": 302
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+<svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="400" rx="8" fill="#F9FAFB"/>
+  
+  <!-- Chart Background -->
+  <rect x="50" y="50" width="400" height="250" rx="4" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <!-- Chart Title -->
+  <text x="250" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="#1F2A37" text-anchor="middle">Comparativa de Tasas de Interés</text>
+  
+  <!-- Y Axis -->
+  <line x1="50" y1="50" x2="50" y2="300" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="40" y="300" font-family="Arial" font-size="12" fill="#6B7280" text-anchor="end">0%</text>
+  <text x="40" y="225" font-family="Arial" font-size="12" fill="#6B7280" text-anchor="end">10%</text>
+  <text x="40" y="150" font-family="Arial" font-size="12" fill="#6B7280" text-anchor="end">20%</text>
+  <text x="40" y="75" font-family="Arial" font-size="12" fill="#6B7280" text-anchor="end">30%</text>
+  
+  <!-- Grid Lines -->
+  <line x1="50" y1="300" x2="450" y2="300" stroke="#E5E7EB" stroke-width="1"/>
+  <line x1="50" y1="225" x2="450" y2="225" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="50" y1="150" x2="450" y2="150" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="50" y1="75" x2="450" y2="75" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4 4"/>
+  
+  <!-- X Axis -->
+  <line x1="50" y1="300" x2="450" y2="300" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <!-- Bars -->
+  <rect x="100" y="195" width="40" height="105" rx="2" fill="#4338CA" opacity="0.8"/>
+  <rect x="200" y="135" width="40" height="165" rx="2" fill="#EF4444" opacity="0.8"/>
+  <rect x="300" y="165" width="40" height="135" rx="2" fill="#F59E0B" opacity="0.8"/>
+  <rect x="400" y="120" width="40" height="180" rx="2" fill="#10B981" opacity="0.8"/>
+  
+  <!-- Labels -->
+  <text x="120" y="320" font-family="Arial" font-size="12" fill="#4B5563" text-anchor="middle">Banco A</text>
+  <text x="220" y="320" font-family="Arial" font-size="12" fill="#4B5563" text-anchor="middle">Banco B</text>
+  <text x="320" y="320" font-family="Arial" font-size="12" fill="#4B5563" text-anchor="middle">Fintech C</text>
+  <text x="420" y="320" font-family="Arial" font-size="12" fill="#4B5563" text-anchor="middle">Fintech D</text>
+  
+  <!-- Values -->
+  <text x="120" y="185" font-family="Arial" font-size="12" font-weight="bold" fill="#4338CA" text-anchor="middle">14.5%</text>
+  <text x="220" y="125" font-family="Arial" font-size="12" font-weight="bold" fill="#EF4444" text-anchor="middle">22.3%</text>
+  <text x="320" y="155" font-family="Arial" font-size="12" font-weight="bold" fill="#F59E0B" text-anchor="middle">18.1%</text>
+  <text x="420" y="110" font-family="Arial" font-size="12" font-weight="bold" fill="#10B981" text-anchor="middle">12.4%</text>
+  
+  <!-- Legend -->
+  <rect x="130" y="350" width="240" height="30" rx="4" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+  <rect x="140" y="360" width="10" height="10" rx="1" fill="#4338CA" opacity="0.8"/>
+  <text x="160" y="369" font-family="Arial" font-size="10" fill="#4B5563">Mejores Tasas</text>
+  <rect x="240" y="360" width="10" height="10" rx="1" fill="#EF4444" opacity="0.8"/>
+  <text x="260" y="369" font-family="Arial" font-size="10" fill="#4B5563">Opciones no recomendadas</text>
+  
+  <!-- User Selection -->
+  <rect x="110" y="380" width="280" height="1" fill="#E5E7EB"/>
+  <rect x="120" y="370" width="1" height="20" fill="#4338CA"/>
+  <circle cx="120" cy="370" r="6" fill="#4338CA"/>
+  <text x="120" y="395" font-family="Arial" font-size="10" fill="#4338CA" text-anchor="middle">Tu mejor opción</text>
+</svg>
+

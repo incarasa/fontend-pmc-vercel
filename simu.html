@@ -178,24 +178,67 @@
         margin-bottom: 10px; /* Space after instructions */
     }
 
+    /* ---------- Topbar base ---------- */
+    .topbar            {position:fixed; inset:0 0 auto; width:100%; background:#312e81; color:#fff; z-index:9999; box-shadow:0 2px 6px rgb(0 0 0 /.1);}
+    .topbar-content    {max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:.75rem 1.25rem;}
+    .topbar-logo       {font-weight:700; font-size:1.25rem; letter-spacing:.05em;}
+    .topbar-links      {display:flex; align-items:center; gap:1rem; flex-wrap:wrap;}
+    .topbar-links a    {text-decoration:none; color:#c7d2fe; font-weight:500; transition:color .2s;}
+    .topbar-links a:hover{color:#fff;}
+
+    .menu-toggle       {display:none; background:none; border:0; color:#fff; cursor:pointer; padding:.5rem;}
+
+    /* Botón de CTA que ya tenías */
+    .boton-creditos{background:#4f46e5;color:#fff;padding:.5rem 1rem;border-radius:6px;font-weight:600;border:0;white-space:nowrap;transition:background .2s}
+    .boton-creditos:hover{background:#4338ca}
+
+    /* ---------- modo móvil (≤640 px) ---------- */
+    @media (max-width:640px){
+      .menu-toggle{display:block;}              /* mostrar hamburger */
+      .topbar-links{
+        position:fixed; /* panel que “cuelga” */
+        top:64px; left:0; width:100%;
+        flex-direction:column; align-items:flex-start;
+        background:#312e81; padding:1rem 1.25rem;
+        gap:1rem;
+        transform:translateY(-120%);            /* oculto por defecto */
+        transition:transform .25s ease;
+      }
+      .topbar-links.open{transform:translateY(0);} /* visible */
+    }
+
 
   </style>
 
 </head>
 
 <body>
+<!-- ===== Topbar responsive ===== -->
   <div class="topbar">
     <div class="topbar-content">
+      <!-- Logo -->
       <div class="topbar-logo">
         <span class="logo-text">Qredi</span>
       </div>
-      <div class="topbar-links">
+
+      <!-- Botón hamburguesa SOLO visible en móvil -->
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <!-- ícono 3 líneas -->
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Links ⇢ se ocultan en móvil y aparecen al pulsar el menú -->
+      <nav class="topbar-links" id="mainMenu">
         <a href="#app">Simular</a>
         <a href="#app">Resultado</a>
         <a href="#app">Gráfico</a>
         <a href="#faq">FAQ</a>
         <button class="boton-creditos" onclick="location.href='mis-creditos.html'">Mis Créditos</button>
-      </div>
+      </nav>
     </div>
   </div>
 

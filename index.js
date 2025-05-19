@@ -661,3 +661,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add other share buttons here if you implement them (e.g., Twitter, Facebook)
     }
 });
+
+// Alterna la visibilidad del menú en móvil
+  document.querySelector('.menu-toggle').addEventListener('click', ()=>{
+    document.getElementById('mainMenu').classList.toggle('open');
+  });

@@ -455,8 +455,10 @@ contenedor.addEventListener('click', async (event) => {
         }
 
         // Ensure the Send button is enabled
-        if(enviarButton) enviarButton.disabled = false;
-
+        if (enviarButton) {
+          enviarButton.disabled = false;          // vuelve a aceptar clics
+          enviarButton.classList.remove('btn-disabled'); // 💄 recupera color y cursor
+        }
         // Note: This reset only clears the UI for this section.
         // historialConversacion is no longer used per section.
         // ultimaRespuesta is not cleared here as it tracks the *last* overall result.

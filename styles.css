@@ -392,3 +392,8 @@ footer {
   transform: translateY(-2px); /* Efecto de elevación */
   transition: all 0.2s ease;
 }
+
+.btn-disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}

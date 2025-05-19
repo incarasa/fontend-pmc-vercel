@@ -312,6 +312,7 @@ contenedor.addEventListener('click', async (event) => {
         // Show loading state ...
         spinner.style.display = 'inline-block';
         button.disabled = true;
+        button.classList.add('btn-disabled');
         respuestaPre.textContent = 'Consultando a Qredi...';
         respuestaTasaSpan.textContent = '--';
         respuestaInteresSpan.textContent = '--';
@@ -319,7 +320,7 @@ contenedor.addEventListener('click', async (event) => {
 
         try {
             // Fetch API code ...
-            const res = await fetch("https://backend-pmc-vercel.vercel.app/chatGPT/", {
+            const res = await fetch("https://backend-pmc-vercel.vercel.app/chatGPT", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 // Sending only the current text_usuario, not historical context
@@ -423,7 +424,7 @@ contenedor.addEventListener('click', async (event) => {
         } finally {
             // Hide loading state ...
             spinner.style.display = 'none';
-            button.disabled = false;
+            /* button.disabled = false; */
         }
     } // End of if (target.matches('.enviar-btn'))
 
@@ -442,7 +443,7 @@ contenedor.addEventListener('click', async (event) => {
         const enviarButton = creditSection.querySelector('.enviar-btn');
 
 
-        mensajeTextarea.value = '';
+        /* mensajeTextarea.value = ''; */
         respuestaPre.textContent = 'Esperando entrada...';
         respuestaTasaSpan.textContent = '--';
         respuestaInteresSpan.textContent = '--';
